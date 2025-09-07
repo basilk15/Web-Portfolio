@@ -312,6 +312,46 @@ body {
 }
 .intro-side .interests-list li { margin: 6px 0; }
 
+/* Certifications list styling (same feel as interests) */
+.intro-side .cert-list {
+  margin: 8px 0 20px;
+  padding-left: 22px;
+  font-size: 20px;
+  color: #111827;
+  max-width: 640px; /* keep buttons closer to titles */
+}
+.intro-side .cert-list li { margin: 10px 0 18px; }
+
+/* Certification item layout */
+.intro-side .cert-item {
+  display: grid;             /* align button column consistently */
+  grid-template-columns: 1fr auto; /* title grows, button stays tight */
+  align-items: center;
+  column-gap: 12px;
+  width: 100%;
+}
+.intro-side .cert-title { font-weight: 600; }
+
+/* Verify credential button */
+.intro-side .btn-verify {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: #059669; /* emerald-600: matches theme accents */
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 18px -12px rgba(5, 150, 105, 0.45);
+  transition: background 0.2s ease, transform 0.08s ease, box-shadow 0.2s ease;
+  width: fit-content;
+}
+.intro-side .btn-verify:hover { background: #047857; transform: translateY(-1px); box-shadow: 0 12px 20px -12px rgba(4, 120, 87, 0.55); }
+.intro-side .btn-verify:active { transform: translateY(0); }
+.intro-side .btn-verify:focus-visible { outline: 2px solid rgba(5, 150, 105, 0.35); outline-offset: 2px; }
+
 /* -------------------------
    Responsive adjustments
    ------------------------- */
