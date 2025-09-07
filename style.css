@@ -1,6 +1,6 @@
 .container {
   text-align: left;
-  width: min(450px, 100%); /* keep original size on desktop, shrink on mobile */
+  width: min(480px, 100%); /* a little more smaller */
   max-width: 100%;
   flex: 0 0 auto; /* prevent flex from stretching it */
 }
@@ -38,7 +38,7 @@ img, svg, video { max-width: 100%; height: auto; }
   margin-top: 24px;          /* space below logo */
   margin-left: 100px;        /* align with name and logo */
   width: 100%;               /* match container width */
-  max-width: 450px;          /* cap to original visual size */
+  max-width: 480px;          /* slightly smaller visual size on desktop */
   border-radius: 16px;
   overflow: hidden;          /* clip scaled image corners */
   box-shadow: 0 12px 30px -12px rgba(0,0,0,0.25),
@@ -90,7 +90,7 @@ img, svg, video { max-width: 100%; height: auto; }
   padding: 16px;             /* breathing room on small screens */
 }
 .intro-side h1 {
-  margin-top: 150px;         /* same vertical start as the image */
+  margin-top: 160px;         /* align top with photo top (logo 140 + 10 + 24) */
   font-size: clamp(32px, 8vw, 60px);           /* match your heading size */
   white-space: nowrap;
 }
