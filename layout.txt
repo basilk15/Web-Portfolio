@@ -1,0 +1,5 @@
+Layout for web portfolio:
+
+1) First i need to show the academic projects
+2) STRP 1 projects 
+3) need to add logo of HU

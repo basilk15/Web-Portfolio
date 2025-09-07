@@ -1,0 +1,305 @@
+.container {
+  text-align: left;
+  width: 450px; /* original width */
+}
+
+/* Global modern typography */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color: #111827; /* gray-900 */
+  /* Page background */
+  min-height: 100vh;
+  background-color: #edd5d5; /* fallback */
+  background: linear-gradient(90deg,rgba(237, 213, 213, 1) 0%, rgba(193, 217, 207, 1) 49%, rgba(237, 222, 209, 1) 100%);
+}
+h1, h2 {
+  font-weight: 700;          /* bold but clean */
+  letter-spacing: -0.02em;   /* subtle modern tightening */
+}
+
+/* Keep original picture position and name below it */
+.container .profile-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Modern photo card wrapper */
+.photo-card {
+  margin-top: 24px;          /* space below logo */
+  margin-left: 100px;        /* align with name and logo */
+  width: 100%;               /* match container width (450px) */
+  border-radius: 16px;
+  overflow: hidden;          /* clip scaled image corners */
+  box-shadow: 0 12px 30px -12px rgba(0,0,0,0.25),
+              0 8px 12px -8px rgba(0,0,0,0.15);
+  outline: 1px solid rgba(17, 24, 39, 0.06); /* subtle border */
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.photo-card:hover {
+  box-shadow: 0 16px 40px -16px rgba(0,0,0,0.3),
+              0 10px 16px -10px rgba(0,0,0,0.18);
+  transform: translateY(-3px);
+}
+.photo-card img {
+  transform: scale(1);
+  transition: transform 0.35s ease, filter 0.35s ease;
+  will-change: transform;
+}
+.photo-card:hover img {
+  transform: scale(1.03);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-card, .photo-card img { transition: none; }
+}
+
+/* University logo above the picture */
+.container .uni-logo {
+  margin-top: 10px;         /* align with right heading */
+  margin-left: 100px;
+  display: block;
+  width: 140px;              /* modest logo size */
+  height: auto;
+}
+.name-block { margin-left: 100px; }
+.container h1 {
+  margin-top: 30px;
+  margin-bottom: 4px;      /* tighter gap above taglines */
+  font-size: 40px;
+  margin-left: 0;         /* align to name-block start */
+  white-space: nowrap;
+}
+
+/* Place a right-side heading without changing the left block */
+.layout {
+  display: flex;
+  align-items: flex-start;   /* align tops; use center if you prefer */
+  gap: 200px;                /* push right-side heading further right */
+}
+.intro-side h1 {
+  margin-top: 150px;         /* same vertical start as the image */
+  font-size: 60px;           /* match your heading size */
+  white-space: nowrap;
+}
+
+/* Social icons under the right-side heading */
+.social {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.container .social { margin-left: 0; } /* follows name-block alignment */
+.social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f3f4f6;     /* gray-100 */
+  color: #111827;          /* gray-900 */
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.social__link:hover {
+  background: #111827;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Small taglines under social icons */
+.taglines {
+  margin-top: 6px;        /* reduced space below name */
+  font-size: 16px;         /* smaller than the 40px name */
+  color: #4b5563;          /* gray-600 for subtlety */
+  line-height: 1.4;
+}
+.taglines p {
+  margin: 0;               /* remove default p spacing */
+}
+.taglines p + p {
+  margin-top: 4px;         /* small space between lines */
+}
+
+/* Section headings after the intro paragraph */
+.intro-side .sections { margin-top: 16px; }
+.intro-side .section-title {
+  margin-top: 24px;
+  font-size: 32px;          /* make headings stand out */
+  letter-spacing: -0.01em;
+  position: relative;
+  display: block;           /* ensure each heading is on its own line */
+  color: #111827;
+}
+.intro-side .section-title::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 56px;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: #111827;      /* accent underline */
+}
+
+/* Qualifications list styling */
+.intro-side .section-body { margin-top: 8px; }
+/* Academic Projects intro paragraph: +2px */
+.intro-side .section-body p { font-size: 20px; }
+/* Subsection headings: +2px */
+.intro-side .subsection-title { font-size: 24px; font-weight: 600; margin-top: 12px; }
+.intro-side .subsection-space { height: 80px; }
+/* Generic space for empty sections */
+.intro-side .section-space { height: 100px; }
+/* Project poster card styling */
+.intro-side .project-poster {
+  margin: 10px 0 16px;
+  max-width: 640px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px -12px rgba(0,0,0,0.25),
+              0 8px 12px -8px rgba(0,0,0,0.15);
+  outline: 1px solid rgba(17, 24, 39, 0.06);
+}
+.intro-side .project-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Make 2025 poster match 2024 poster width visually */
+.intro-side .project-poster--match2024 {
+  max-width: none;  /* allow percentage width */
+  width: 58%;       /* match the 2024 poster flex-basis */
+}
+@media (max-width: 900px) {
+  .intro-side .project-poster--match2024 { width: 100%; }
+}
+/* Add extra space before a subsection title that follows a poster */
+.intro-side .project-poster + .subsection-title {
+  margin-top: 24px;
+}
+/* Poster + highlights side-by-side layout */
+.intro-side .project-poster-row {
+  display: flex;
+  gap: 28px;
+  align-items: center;       /* vertically center highlights with poster */
+  margin: 10px 0 36px;       /* add more space below before 2025 title */
+}
+.intro-side .project-poster-row .project-poster {
+  margin: 0;              /* override default margins inside the row */
+  flex: 0 1 58%;          /* keep poster reasonably wide but responsive */
+  max-width: none;        /* let flex control width */
+}
+.intro-side .project-poster-row .project-highlights {
+  margin: 0;                 /* align with poster vertically */
+  flex: 1 1 42%;
+  min-width: 320px;
+  max-width: 460px;
+}
+@media (max-width: 900px) {
+  .intro-side .project-poster-row { flex-direction: column; }
+  .intro-side .project-poster-row .project-poster { margin: 0 0 8px; }
+}
+/* Bullet highlights card */
+.intro-side .project-highlights {
+  margin: 10px 0 20px;
+  padding: 16px 18px;
+  list-style: none;          /* we draw our own bullets */
+  font-size: 20px;           /* match paragraph size in section body */
+  color: #111827;
+  background: #f9fafb;       /* subtle card background */
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -12px rgba(0,0,0,0.18),
+              0 8px 12px -8px rgba(0,0,0,0.12);
+  outline: 1px solid rgba(17, 24, 39, 0.06);
+}
+.intro-side .project-highlights li { 
+  margin: 8px 0; 
+  position: relative;
+  padding-left: 28px;        /* room for custom bullet */
+}
+.intro-side .project-highlights li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  color: #059669;           /* emerald-600 */
+  font-weight: 700;
+}
+.intro-side .qual-grid {
+  display: flex;
+  gap: 32px;                 /* keep distance between the two logos/cards */
+  align-items: flex-start;
+  flex-wrap: wrap;            /* stack on small screens */
+}
+.intro-side .qual-card {
+  max-width: 320px;
+  display: grid;
+  grid-template-rows: 90px auto; /* reserve same space for logos */
+  font-size: 20px;            /* match Academic Projects paragraph size */
+}
+.intro-side .qual-logo {
+  height: 80px;              /* uniform logo height for alignment */
+  width: auto;
+  display: block;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+  align-self: end;           /* sit at bottom of the reserved row */
+}
+.intro-side .qual-title { font-weight: 600; }
+.intro-side .qual-meta { color: #6b7280; font-size: 20px; margin: 2px 0 6px; }
+/* Academic projects: skills line */
+.intro-side .project-skills { color: #374151; font-size: 18px; margin-top: 6px; }
+
+/* -------------------------
+   Page load animations
+   ------------------------- */
+/* Subtle fade-in for the whole page */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fade-and-rise for main sections */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Start with a quick page fade */
+body {
+  opacity: 0;
+  animation: fadeIn 520ms ease-out both;
+}
+
+/* Stagger the two primary columns */
+.layout > * {
+  opacity: 0;
+  transform: translateY(8px);
+  will-change: opacity, transform;
+  animation: fadeInUp 680ms ease-out both;
+}
+.layout > :nth-child(1) { animation-delay: 140ms; }
+.layout > :nth-child(2) { animation-delay: 280ms; }
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  body, .layout > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Work & Research Interests list */
+.intro-side .interests-list {
+  margin: 8px 0 20px;
+  padding-left: 22px;
+  font-size: 20px;
+  color: #111827;
+}
+.intro-side .interests-list li { margin: 6px 0; }
