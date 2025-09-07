@@ -230,6 +230,7 @@ img, svg, video { max-width: 100%; height: auto; }
   position: relative;
   padding-left: 28px;        /* room for custom bullet */
 }
+.intro-side .project-actions { margin: 8px 0 22px; }
 .intro-side .project-highlights li::before {
   content: "✓";
   position: absolute;
