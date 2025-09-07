@@ -1,6 +1,8 @@
 .container {
   text-align: left;
-  width: 450px; /* original width */
+  width: min(450px, 100%); /* keep original size on desktop, shrink on mobile */
+  max-width: 100%;
+  flex: 0 0 auto; /* prevent flex from stretching it */
 }
 
 /* Global modern typography */
@@ -14,11 +16,15 @@ body {
   min-height: 100vh;
   background-color: #edd5d5; /* fallback */
   background: linear-gradient(90deg,rgba(237, 213, 213, 1) 0%, rgba(193, 217, 207, 1) 49%, rgba(237, 222, 209, 1) 100%);
+  overflow-x: hidden; /* guard against accidental horizontal scroll */
 }
 h1, h2 {
   font-weight: 700;          /* bold but clean */
   letter-spacing: -0.02em;   /* subtle modern tightening */
 }
+
+/* Make all media shrink within their parent */
+img, svg, video { max-width: 100%; height: auto; }
 
 /* Keep original picture position and name below it */
 .container .profile-photo {
@@ -31,7 +37,8 @@ h1, h2 {
 .photo-card {
   margin-top: 24px;          /* space below logo */
   margin-left: 100px;        /* align with name and logo */
-  width: 100%;               /* match container width (450px) */
+  width: 100%;               /* match container width */
+  max-width: 450px;          /* cap to original visual size */
   border-radius: 16px;
   overflow: hidden;          /* clip scaled image corners */
   box-shadow: 0 12px 30px -12px rgba(0,0,0,0.25),
@@ -70,7 +77,7 @@ h1, h2 {
 .container h1 {
   margin-top: 30px;
   margin-bottom: 4px;      /* tighter gap above taglines */
-  font-size: 40px;
+  font-size: clamp(28px, 6vw, 40px);
   margin-left: 0;         /* align to name-block start */
   white-space: nowrap;
 }
@@ -79,11 +86,12 @@ h1, h2 {
 .layout {
   display: flex;
   align-items: flex-start;   /* align tops; use center if you prefer */
-  gap: 200px;                /* push right-side heading further right */
+  gap: clamp(24px, 8vw, 200px);                /* push right-side heading further right */
+  padding: 16px;             /* breathing room on small screens */
 }
 .intro-side h1 {
   margin-top: 150px;         /* same vertical start as the image */
-  font-size: 60px;           /* match your heading size */
+  font-size: clamp(32px, 8vw, 60px);           /* match your heading size */
   white-space: nowrap;
 }
 
@@ -197,7 +205,7 @@ h1, h2 {
 .intro-side .project-poster-row .project-highlights {
   margin: 0;                 /* align with poster vertically */
   flex: 1 1 42%;
-  min-width: 320px;
+  min-width: 0;              /* allow shrinking on narrow screens */
   max-width: 460px;
 }
 @media (max-width: 900px) {
@@ -303,3 +311,19 @@ body {
   color: #111827;
 }
 .intro-side .interests-list li { margin: 6px 0; }
+
+/* -------------------------
+   Responsive adjustments
+   ------------------------- */
+@media (max-width: 1100px) {
+  .layout { flex-direction: column; gap: 24px; }
+  .intro-side h1 { margin-top: 24px; white-space: normal; }
+}
+
+@media (max-width: 700px) {
+  .name-block,
+  .photo-card,
+  .container .uni-logo { margin-left: 0; }
+  .container h1 { white-space: normal; }
+  .intro-side h1 { white-space: normal; }
+}
