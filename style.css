@@ -197,10 +197,33 @@ img, svg, video { max-width: 100%; height: auto; }
   align-items: center;       /* vertically center highlights with poster */
   margin: 10px 0 36px;       /* add more space below before 2025 title */
 }
+.intro-side .project-poster-row--top { align-items: flex-start; }
+.intro-side .project-poster-row--top .project-highlights { margin-top: 100; }
+
+/* Center highlights to the image, ignoring the button height */
+.intro-side .project-poster-row--image-centered { align-items: center; }
+.intro-side .project-poster-row--image-centered .project-poster-col { position: relative; }
+.intro-side .project-poster-row--image-centered .project-poster-col .project-actions {
+  position: absolute;
+  top: calc(100% + 8px);  /* place just below image */
+  left: 0;
+}
+.intro-side .project-poster-row--ascon .project-highlights { margin-top: 5px; }
+@media (max-width: 900px) {
+  .intro-side .project-poster-row--ascon .project-highlights { margin-top: 0; }
+}
 .intro-side .project-poster-row .project-poster {
   margin: 0;              /* override default margins inside the row */
   flex: 0 1 58%;          /* keep poster reasonably wide but responsive */
   max-width: none;        /* let flex control width */
+}
+.intro-side .project-poster-col {
+  margin: 0;              /* align with poster when used as column */
+  flex: 0 1 58%;
+  max-width: none;
+}
+.intro-side .project-poster-col .project-actions { 
+  margin: 8px 0 0;        /* simple spacing below image; no shadow */
 }
 .intro-side .project-poster-row .project-highlights {
   margin: 0;                 /* align with poster vertically */
