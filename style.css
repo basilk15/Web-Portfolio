@@ -61,6 +61,8 @@ img, svg, video { max-width: 100%; height: auto; }
   filter: saturate(1.05) contrast(1.03);
 }
 
+/* (intentionally no card styling for the TryHackMe badge per request) */
+
 @media (prefers-reduced-motion: reduce) {
   .photo-card, .photo-card img { transition: none; }
 }
@@ -172,6 +174,22 @@ img, svg, video { max-width: 100%; height: auto; }
   box-shadow: 0 12px 30px -12px rgba(0,0,0,0.25),
               0 8px 12px -8px rgba(0,0,0,0.15);
   outline: 1px solid rgba(17, 24, 39, 0.06);
+}
+.intro-side .project-poster--logo {
+  /* Logo card: slightly larger, still compact */
+  flex: 0 1 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: #ffffff;
+  max-width: 720px; /* allow a bit wider than standard poster */
+}
+.intro-side .project-poster--logo img {
+  max-height: 280px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 .intro-side .project-poster img {
   width: 100%;
@@ -375,6 +393,26 @@ body {
 .intro-side .btn-verify:hover { background: #047857; transform: translateY(-1px); box-shadow: 0 12px 20px -12px rgba(4, 120, 87, 0.55); }
 .intro-side .btn-verify:active { transform: translateY(0); }
 .intro-side .btn-verify:focus-visible { outline: 2px solid rgba(5, 150, 105, 0.35); outline-offset: 2px; }
+
+/* Use the same green button style in the left column */
+.container .btn-verify {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: #059669;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 18px -12px rgba(5, 150, 105, 0.45);
+  transition: background 0.2s ease, transform 0.08s ease, box-shadow 0.2s ease;
+  width: fit-content;
+}
+.container .btn-verify:hover { background: #047857; transform: translateY(-1px); box-shadow: 0 12px 20px -12px rgba(4, 120, 87, 0.55); }
+.container .btn-verify:active { transform: translateY(0); }
+.container .btn-verify:focus-visible { outline: 2px solid rgba(5, 150, 105, 0.35); outline-offset: 2px; }
 
 /* -------------------------
    Responsive adjustments
