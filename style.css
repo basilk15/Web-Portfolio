@@ -691,8 +691,22 @@ body {
 
 @media (max-width: 700px) {
   .page { padding: 24px 20px; }
+  .layout { gap: 24px; }
   .container h1 { white-space: normal; }
   .intro-side h1 { white-space: normal; }
+  .chapter { margin: 48px 0; }
+  .chapter-body { padding-top: 10px; }
+  .sections .section-title { font-size: clamp(24px, 7vw, 30px); }
+  .sections .project-poster-row { padding: 14px 14px; gap: 20px; }
+  .sections .project-highlights { font-size: 18px; }
+  .sections .section-body p { font-size: 18px; }
+  .network-viz { max-width: 100%; }
+  .network-viz { aspect-ratio: 4 / 3; }
+  .node { width: 68px; height: 68px; }
+  .node img { width: 58px; height: 58px; }
+  .node::before,
+  .node::after { width: 68px; height: 68px; }
+  .lwc-tag { font-size: 10px; padding: 4px 8px; }
 }
 
 /* -------------------------
