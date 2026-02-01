@@ -283,7 +283,7 @@ img, svg, video { max-width: 100%; height: auto; }
 /* Poster + highlights side-by-side layout */
 .sections .project-poster-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   gap: 36px;
   align-items: center;       /* vertically center highlights with poster */
   margin: 16px 0 36px;       /* add more space below before 2025 title */
@@ -390,6 +390,43 @@ img, svg, video { max-width: 100%; height: auto; }
   font-size: 20px;
   letter-spacing: -0.01em;
   color: var(--ink);
+}
+
+.aws-pipeline-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0 16px;
+  flex-wrap: wrap;
+}
+.aws-node {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+.aws-arrow {
+  font-size: 0;
+  width: 200px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(71, 85, 105, 0.2), rgba(71, 85, 105, 0.7));
+  position: relative;
+}
+.aws-arrow::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 10px solid rgba(71, 85, 105, 0.7);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+.aws-pipeline {
+  width: min(100%, 680px);
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--line);
 }
 
 .network {
@@ -590,13 +627,14 @@ body {
 /* Certifications list styling (same feel as interests) */
 .sections .cert-list {
   margin: 8px 0 20px;
-  padding-left: 22px;
+  padding-left: 0;
   font-size: 20px;
   color: var(--ink);
   max-width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px 28px;
+  list-style: none;
 }
 .sections .cert-list li { margin: 10px 0 18px; }
 
@@ -624,12 +662,12 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
+  padding: 10px 18px;
   border-radius: 9999px;
   background: var(--accent);
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   box-shadow: 0 12px 24px -16px rgba(15, 118, 110, 0.55);
   transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.25s ease;
@@ -644,12 +682,12 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
+  padding: 10px 18px;
   border-radius: 9999px;
   background: var(--accent);
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   box-shadow: 0 12px 24px -16px rgba(15, 118, 110, 0.55);
   transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.25s ease;
