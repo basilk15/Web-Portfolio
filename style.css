@@ -211,7 +211,7 @@ img, svg, video { max-width: 100%; height: auto; }
 /* Poster + highlights side-by-side layout */
 .intro-side .project-poster-row {
   display: flex;
-  gap: 28px;
+  gap: 40px;
   align-items: center;       /* vertically center highlights with poster */
   margin: 10px 0 36px;       /* add more space below before 2025 title */
 }
@@ -282,7 +282,7 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .intro-side .qual-grid {
   display: flex;
-  gap: 32px;                 /* keep distance between the two logos/cards */
+  gap: 44px;                 /* keep distance between the two logos/cards */
   align-items: flex-start;
   flex-wrap: wrap;            /* stack on small screens */
 }
@@ -444,17 +444,19 @@ body {
 .reveal-left { transform: translateX(22px); }
 .reveal-right { transform: translateX(-22px); }
 .reveal-scale { transform: scale(0.96); }
+.reveal-zoom { transform: scale(0.94); }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* Optional subtle stagger when grouped */
-[data-reveal-group] > .reveal { transition-delay: 60ms; }
-[data-reveal-group] > .reveal:nth-child(2) { transition-delay: 120ms; }
-[data-reveal-group] > .reveal:nth-child(3) { transition-delay: 180ms; }
-[data-reveal-group] > .reveal:nth-child(4) { transition-delay: 240ms; }
-[data-reveal-group] > .reveal:nth-child(5) { transition-delay: 300ms; }
+.section-body .reveal { transition-delay: 140ms; }
+[data-reveal-group] > .reveal { transition-delay: 160ms; }
+[data-reveal-group] > .reveal:nth-child(2) { transition-delay: 240ms; }
+[data-reveal-group] > .reveal:nth-child(3) { transition-delay: 320ms; }
+[data-reveal-group] > .reveal:nth-child(4) { transition-delay: 400ms; }
+[data-reveal-group] > .reveal:nth-child(5) { transition-delay: 480ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
