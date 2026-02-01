@@ -141,8 +141,6 @@ img, svg, video { max-width: 100%; height: auto; }
 .intro-side .sections {
   margin-top: 16px;
   max-width: 980px;
-  margin-left: auto;
-  margin-right: auto;
 }
 .intro-side .section-title {
   margin-top: 24px;
@@ -151,16 +149,15 @@ img, svg, video { max-width: 100%; height: auto; }
   position: relative;
   display: block;           /* ensure each heading is on its own line */
   color: #111827;
-  text-align: center;
+  text-align: left;
 }
+.intro-side .section-title.reveal-zoom { transform-origin: left center; }
 .intro-side .section-title::after {
   content: "";
   display: block;
   height: 4px;
   width: 56px;
   margin-top: 6px;
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 2px;
   background: #111827;      /* accent underline */
 }
@@ -168,15 +165,11 @@ img, svg, video { max-width: 100%; height: auto; }
 /* Qualifications list styling */
 .intro-side .section-body {
   margin-top: 8px;
-  text-align: center;
+  text-align: left;
 }
 .intro-side .section-body > p,
 .intro-side .project-desc,
-.intro-side .project-skills {
-  max-width: 860px;
-  margin-left: auto;
-  margin-right: auto;
-}
+.intro-side .project-skills { max-width: 860px; }
 /* Academic Projects intro paragraph: +2px */
 .intro-side .section-body p { font-size: 20px; }
 /* Subsection headings: +2px */
@@ -184,7 +177,7 @@ img, svg, video { max-width: 100%; height: auto; }
   font-size: 24px;
   font-weight: 600;
   margin-top: 12px;
-  text-align: center;
+  text-align: left;
 }
 .intro-side .subsection-space { height: 80px; }
 /* Generic space for empty sections */
@@ -237,7 +230,7 @@ img, svg, video { max-width: 100%; height: auto; }
   display: flex;
   gap: 40px;
   align-items: center;       /* vertically center highlights with poster */
-  justify-content: center;
+  justify-content: flex-start;
   margin: 10px 0 36px;       /* add more space below before 2025 title */
 }
 .intro-side .project-poster-row--top { align-items: flex-start; }
@@ -311,7 +304,7 @@ img, svg, video { max-width: 100%; height: auto; }
   gap: 44px;                 /* keep distance between the two logos/cards */
   align-items: flex-start;
   flex-wrap: wrap;            /* stack on small screens */
-  justify-content: center;
+  justify-content: flex-start;
 }
 .intro-side .qual-card {
   max-width: 320px;
@@ -374,7 +367,7 @@ body {
 
 /* Work & Research Interests list */
 .intro-side .interests-list {
-  margin: 8px auto 20px;
+  margin: 8px 0 20px;
   padding-left: 22px;
   font-size: 20px;
   color: #111827;
@@ -385,7 +378,7 @@ body {
 
 /* Certifications list styling (same feel as interests) */
 .intro-side .cert-list {
-  margin: 8px auto 20px;
+  margin: 8px 0 20px;
   padding-left: 22px;
   font-size: 20px;
   color: #111827;
@@ -474,7 +467,7 @@ body {
 .reveal-left { transform: translateX(22px); }
 .reveal-right { transform: translateX(-22px); }
 .reveal-scale { transform: scale(0.96); }
-.reveal-zoom { transform: scale(0.94); }
+.reveal-zoom { transform: scale(1.08); }
 .section-body .reveal.reveal-up {
   transform: translateY(18px) rotateX(6deg) scale(0.98);
 }
