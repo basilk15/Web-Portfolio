@@ -8,6 +8,37 @@ document.documentElement.classList.add('js-enabled');
   const chapterTitles = Array.from(document.querySelectorAll('.chapter-title'));
   const beats = Array.from(document.querySelectorAll('[data-beat]'));
   const reveals = Array.from(document.querySelectorAll('.reveal'));
+  const navShell = document.querySelector('[data-nav-shell]');
+  const navLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
+  const navSections = Array.from(document.querySelectorAll('[data-nav-section]'));
+
+  const setGlowFromLink = (link) => {
+    if (!navShell || !link) return;
+    const shellRect = navShell.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    const center = linkRect.left + linkRect.width / 2 - shellRect.left;
+    navShell.style.setProperty('--glow-x', `${center}px`);
+  };
+
+  const activateNavLink = (id) => {
+    if (!navLinks.length) return;
+    let activeLink = null;
+
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) activeLink = link;
+    });
+
+    if (activeLink) {
+      setGlowFromLink(activeLink);
+      activeLink.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
+    }
+  };
 
   const revealAll = () => {
     chapterTitles.forEach((title) => {
@@ -16,6 +47,9 @@ document.documentElement.classList.add('js-enabled');
     });
     reveals.forEach((el) => el.classList.add('is-visible'));
     chapters.forEach((chapter) => chapter.style.setProperty('--p', 1));
+    if (navSections.length) {
+      activateNavLink(navSections[0].id);
+    }
   };
 
   if (reduce || !supportsObserver) {
@@ -108,6 +142,41 @@ document.documentElement.classList.add('js-enabled');
     });
   };
 
+  if (navShell && navLinks.length && navSections.length) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visible.length) {
+        activateNavLink(visible[0].target.id);
+      }
+    }, {
+      root: null,
+      rootMargin: '-18% 0px -55% 0px',
+      threshold: [0.2, 0.35, 0.55, 0.75],
+    });
+
+    navSections.forEach((section) => sectionObserver.observe(section));
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        const targetId = link.getAttribute('href').slice(1);
+        activateNavLink(targetId);
+      });
+    });
+
+    navShell.addEventListener('pointermove', (event) => {
+      const rect = navShell.getBoundingClientRect();
+      navShell.style.setProperty('--glow-x', `${event.clientX - rect.left}px`);
+    });
+
+    navShell.addEventListener('pointerleave', () => {
+      const activeLink = navLinks.find((link) => link.classList.contains('is-active')) || navLinks[0];
+      setGlowFromLink(activeLink);
+    });
+  }
+
   const requestTick = () => {
     if (!ticking) {
       ticking = true;
@@ -119,6 +188,16 @@ document.documentElement.classList.add('js-enabled');
   };
 
   updateProgress();
+  if (navLinks.length) {
+    const initialSection = navSections.find((section) => {
+      const rect = section.getBoundingClientRect();
+      return rect.top >= 0;
+    }) || navSections[0];
+
+    if (initialSection) {
+      activateNavLink(initialSection.id);
+    }
+  }
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
   if (desktopMedia.addEventListener) {
@@ -126,4 +205,8 @@ document.documentElement.classList.add('js-enabled');
   } else {
     desktopMedia.addListener(requestTick);
   }
+  window.addEventListener('resize', () => {
+    const activeLink = navLinks.find((link) => link.classList.contains('is-active')) || navLinks[0];
+    setGlowFromLink(activeLink);
+  });
 })();

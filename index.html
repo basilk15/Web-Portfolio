@@ -11,7 +11,18 @@
 </head>
 <body>
     <main class="page">
-        <section class="layout hero">
+        <nav class="cyl-nav" aria-label="Portfolio sections" data-nav>
+            <div class="cyl-nav__shell" data-nav-shell>
+                <a class="cyl-nav__link is-active" href="#about" data-nav-link>About</a>
+                <a class="cyl-nav__link" href="#qualifications" data-nav-link>Qualifications</a>
+                <a class="cyl-nav__link" href="#certifications" data-nav-link>Certifications</a>
+                <a class="cyl-nav__link" href="#experience" data-nav-link>Experience</a>
+                <a class="cyl-nav__link" href="#projects" data-nav-link>Projects</a>
+                <a class="cyl-nav__link" href="#achievements" data-nav-link>Achievements</a>
+                <a class="cyl-nav__link" href="#publications" data-nav-link>Publications</a>
+            </div>
+        </nav>
+        <section class="layout hero" id="about" data-nav-section>
             <div class="container">
                 <img src="hu_logo.png" alt="Habib University logo" class="uni-logo">
                 <div class="photo-card">
@@ -82,7 +93,7 @@
         </section>
         <section class="content-sections">
             <div class="sections chapters">
-                <section class="chapter" data-chapter>
+                <section class="chapter" id="qualifications" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Qualifications</h2>
                         <div class="chapter-progress" aria-hidden="true"></div>
@@ -113,7 +124,7 @@
                     </div>
                 </section>
 
-                <section class="chapter" data-chapter>
+                <section class="chapter" id="certifications" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Certifications</h2>
                         <div class="chapter-progress" aria-hidden="true"></div>
@@ -164,7 +175,7 @@
                     </div>
                 </section>
 
-                <section class="chapter" data-chapter>
+                <section class="chapter" id="experience" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Work Experience</h2>
                         <div class="chapter-progress" aria-hidden="true"></div>
@@ -240,7 +251,7 @@
                     </div>
                 </section>
 
-                <section class="chapter" data-chapter>
+                <section class="chapter" id="projects" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Academic Projects</h2>
                         <div class="chapter-progress" aria-hidden="true"></div>
@@ -326,7 +337,7 @@
                     </div>
                 </section>
 
-                <section class="chapter" data-chapter>
+                <section class="chapter" id="achievements" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">My Recent Achievements</h2>
                         <div class="chapter-progress" aria-hidden="true"></div>
@@ -380,7 +391,7 @@
 	                    </div>
 	                </section>
 
-	                <section class="chapter" data-chapter>
+	                <section class="chapter" id="publications" data-chapter data-nav-section>
 	                    <div class="chapter-head">
 	                        <h2 class="section-title chapter-title">Publications</h2>
 	                        <div class="chapter-progress" aria-hidden="true"></div>
