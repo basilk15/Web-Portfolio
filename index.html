@@ -17,7 +17,16 @@
                 <a class="cyl-nav__link" href="#qualifications" data-nav-link>Qualifications</a>
                 <a class="cyl-nav__link" href="#certifications" data-nav-link>Certifications</a>
                 <a class="cyl-nav__link" href="#experience" data-nav-link>Experience</a>
-                <a class="cyl-nav__link" href="#projects" data-nav-link>Projects</a>
+                <div class="cyl-nav__item cyl-nav__item--has-menu" data-nav-item>
+                    <button class="cyl-nav__link cyl-nav__toggle" type="button" data-nav-link data-nav-target="projects" data-nav-toggle aria-expanded="false" aria-controls="projects-menu">
+                        Projects
+                        <span class="cyl-nav__caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="cyl-nav__menu" id="projects-menu" role="menu" aria-label="Project types" data-nav-menu>
+                        <a class="cyl-nav__sublink" href="#academic-projects" role="menuitem" data-subnav-link>Academic Projects</a>
+                        <a class="cyl-nav__sublink" href="#side-projects" role="menuitem" data-subnav-link>Side Projects</a>
+                    </div>
+                </div>
                 <a class="cyl-nav__link" href="#achievements" data-nav-link>Achievements</a>
                 <a class="cyl-nav__link" href="#publications" data-nav-link>Publications</a>
             </div>
@@ -253,11 +262,14 @@
 
                 <section class="chapter" id="projects" data-chapter data-nav-section>
                     <div class="chapter-head">
-                        <h2 class="section-title chapter-title">Academic Projects</h2>
+                        <h2 class="section-title chapter-title">Projects</h2>
                         <div class="chapter-progress" aria-hidden="true"></div>
                     </div>
                     <div class="chapter-body">
                         <div class="section-body">
+                            <div class="beat" data-beat>
+                                <h2 class="section-title project-section-title reveal reveal-up" id="academic-projects">Academic Projects</h2>
+                            </div>
                             <div class="beat" data-beat>
                                 <h3 class="subsection-title reveal reveal-up">Simulating DDoS Attacks in Cloud Networks and Exploring AI Mitigation Techniques</h3>
                                 <p class="project-desc reveal reveal-up">Built botnets in GNS3 to simulate large-scale DDoS attacks on cloud-based infrastructures and measured their impact. Designed and deployed AI-based detection and mitigation techniques, enabling automated threat response and anomaly detection. The project reflects real-world security operations (SIEM/EDR) and strengthens incident response capabilities in cloud environments.</p>
@@ -332,6 +344,35 @@
                                         <span class="lwc-tag tag-main">LWC secure channels</span>
                                     </div>
                                 </section>
+                            </div>
+                            <div class="beat" data-beat>
+                                <h2 class="section-title project-section-title reveal reveal-up" id="side-projects">Side Projects</h2>
+                                <p class="project-desc reveal reveal-up">Alongside my academic work, I also build side projects that explore product identity, secure infrastructure thinking, and polished digital experiences. Infratic is one of the brands I am shaping with a strong focus on clarity, performance, and modern engineering presentation.</p>
+                                <div class="side-project-card reveal reveal-up">
+                                    <div class="side-project-card__visual">
+                                        <figure class="side-project-logo-wrap">
+                                            <img src="infratic.png" alt="Infratic logo" class="side-project-logo" />
+                                        </figure>
+                                    </div>
+                                    <div class="side-project-card__content">
+                                        <p class="side-project-kicker">Featured Side Project</p>
+                                        <h4 class="side-project-title">Infratic</h4>
+                                        <p class="side-project-copy">Infratic is positioned as a modern, infrastructure-minded project identity built around reliable systems, thoughtful product execution, and a clean technical brand presence. The direction emphasizes confidence, scalability, and the kind of engineering polish that makes a project feel market-ready from the first impression.</p>
+                                        <ul class="project-highlights reveal reveal-up">
+                                            <li>Brand direction centered on modern infrastructure and dependable engineering.</li>
+                                            <li>Designed to feel clean, premium, and technically credible at first glance.</li>
+                                            <li>Strong fit for future positioning around deployment, cloud workflows, automation, and secure product delivery.</li>
+                                        </ul>
+                                        <div class="project-actions reveal reveal-up">
+                                            <a class="btn-verify" href="https://github.com/basilk15/infratic" target="_blank" rel="noopener" aria-label="View the Infratic repository on GitHub">
+                                                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" style="margin-right:8px">
+                                                    <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.62 7.62 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+                                                </svg>
+                                                View on GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
