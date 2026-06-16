@@ -15,17 +15,41 @@ document.documentElement.classList.add('js-enabled');
   const navToggle = document.querySelector('[data-nav-toggle]');
   const navMenu = document.querySelector('[data-nav-menu]');
   const subnavLinks = Array.from(document.querySelectorAll('[data-subnav-link]'));
+  const certSliders = Array.from(document.querySelectorAll('[data-cert-slider]'));
   const projectSections = ['academic-projects', 'side-projects']
     .map((id) => document.getElementById(id))
     .filter(Boolean);
+  const navSectionIds = new Set(navSections.map((section) => section.id));
   let activeNavId = '';
   let activeSubnavId = '';
 
-  const getPrimaryTarget = (link) => {
-    if (link.dataset.navTarget) return link.dataset.navTarget;
-    const href = link.getAttribute('href');
-    return href ? href.slice(1) : '';
+  const getHashTarget = (value) => {
+    if (!value) return '';
+    const hashIndex = value.indexOf('#');
+    return hashIndex >= 0 ? value.slice(hashIndex + 1) : '';
   };
+
+  const getPrimaryTarget = (link) => link.dataset.navTarget || getHashTarget(link.getAttribute('href'));
+
+  const setupCertificationSliders = () => {
+    certSliders.forEach((slider) => {
+      const track = slider.querySelector('.cert-list');
+      if (!track || track.dataset.cloned === 'true') return;
+
+      Array.from(track.children).forEach((item) => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('a, button').forEach((control) => {
+          control.setAttribute('tabindex', '-1');
+        });
+        track.appendChild(clone);
+      });
+
+      track.dataset.cloned = 'true';
+    });
+  };
+
+  setupCertificationSliders();
 
   const setGlowFromLink = (link) => {
     if (!navShell || !link) return;
@@ -59,9 +83,25 @@ document.documentElement.classList.add('js-enabled');
   const activateSubnavLink = (id) => {
     if (!subnavLinks.length || !id || activeSubnavId === id) return;
     subnavLinks.forEach((link) => {
-      link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+      const target = link.dataset.subnavTarget || getHashTarget(link.getAttribute('href'));
+      link.classList.toggle('is-active', target === id);
     });
     activeSubnavId = id;
+  };
+
+  const syncHashTarget = () => {
+    const hashTarget = window.location.hash.slice(1);
+    if (!hashTarget) return;
+
+    if (projectSections.some((section) => section.id === hashTarget)) {
+      activateNavLink('projects');
+      activateSubnavLink(hashTarget);
+      return;
+    }
+
+    if (navSectionIds.has(hashTarget)) {
+      activateNavLink(hashTarget);
+    }
   };
 
   const getSectionAnchorLine = () => {
@@ -93,9 +133,13 @@ document.documentElement.classList.add('js-enabled');
       activateNavLink(activeSection.id);
     }
 
-    const activeProjectSection = getActiveSection(projectSections);
-    if (activeProjectSection) {
-      activateSubnavLink(activeProjectSection.id);
+    if (projectSections.length) {
+      const hashTarget = window.location.hash.slice(1);
+      const matchingProjectSection = projectSections.find((section) => section.id === hashTarget);
+      const activeProjectSection = matchingProjectSection || getActiveSection(projectSections);
+      if (activeProjectSection) {
+        activateSubnavLink(activeProjectSection.id);
+      }
     }
   };
 
@@ -133,7 +177,7 @@ document.documentElement.classList.add('js-enabled');
     subnavLinks.forEach((link) => {
       link.addEventListener('click', () => {
         activateNavLink('projects');
-        activateSubnavLink(link.getAttribute('href').slice(1));
+        activateSubnavLink(link.dataset.subnavTarget || getHashTarget(link.getAttribute('href')));
         closeMenus();
       });
     });
@@ -255,7 +299,7 @@ document.documentElement.classList.add('js-enabled');
     });
   };
 
-  if (navShell && navLinks.length && navSections.length) {
+  if (navShell && navLinks.length) {
     navLinks.forEach((link) => {
       link.addEventListener('click', () => {
         const targetId = getPrimaryTarget(link);
@@ -292,6 +336,10 @@ document.documentElement.classList.add('js-enabled');
   syncActiveNavigation();
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
+  window.addEventListener('hashchange', () => {
+    syncHashTarget();
+    window.setTimeout(requestTick, 300);
+  });
   if (desktopMedia.addEventListener) {
     desktopMedia.addEventListener('change', requestTick);
   } else {

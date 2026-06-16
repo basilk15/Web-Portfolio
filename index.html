@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Basil Khowaja | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,22 +13,24 @@
     <main class="page">
         <nav class="cyl-nav" aria-label="Portfolio sections" data-nav>
             <div class="cyl-nav__shell" data-nav-shell>
-                <a class="cyl-nav__link is-active" href="#about" data-nav-link>About</a>
-                <a class="cyl-nav__link" href="#qualifications" data-nav-link>Qualifications</a>
-                <a class="cyl-nav__link" href="#certifications" data-nav-link>Certifications</a>
-                <a class="cyl-nav__link" href="#experience" data-nav-link>Experience</a>
+                <a class="cyl-nav__link" href="#about" data-nav-link data-nav-target="about">About</a>
+                <a class="cyl-nav__link" href="#qualifications" data-nav-link data-nav-target="qualifications">Qualifications</a>
+                <a class="cyl-nav__link" href="#certifications" data-nav-link data-nav-target="certifications">Certifications</a>
+                <a class="cyl-nav__link" href="#experience" data-nav-link data-nav-target="experience">Experience</a>
                 <div class="cyl-nav__item cyl-nav__item--has-menu" data-nav-item>
-                    <button class="cyl-nav__link cyl-nav__toggle" type="button" data-nav-link data-nav-target="projects" data-nav-toggle aria-expanded="false" aria-controls="projects-menu">
-                        Projects
-                        <span class="cyl-nav__caret" aria-hidden="true"></span>
-                    </button>
+                    <div class="cyl-nav__compound">
+                        <a class="cyl-nav__link" href="#projects" data-nav-link data-nav-target="projects">Projects</a>
+                        <button class="cyl-nav__menu-button" type="button" data-nav-toggle aria-expanded="false" aria-controls="projects-menu" aria-label="Open project categories">
+                            <span class="cyl-nav__caret" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <div class="cyl-nav__menu" id="projects-menu" role="menu" aria-label="Project types" data-nav-menu>
-                        <a class="cyl-nav__sublink" href="#academic-projects" role="menuitem" data-subnav-link>Academic Projects</a>
-                        <a class="cyl-nav__sublink" href="#side-projects" role="menuitem" data-subnav-link>Side Projects</a>
+                        <a class="cyl-nav__sublink" href="#academic-projects" role="menuitem" data-subnav-link data-subnav-target="academic-projects">Academic Projects</a>
+                        <a class="cyl-nav__sublink" href="#side-projects" role="menuitem" data-subnav-link data-subnav-target="side-projects">Side Projects</a>
                     </div>
                 </div>
-                <a class="cyl-nav__link" href="#achievements" data-nav-link>Achievements</a>
-                <a class="cyl-nav__link" href="#publications" data-nav-link>Publications</a>
+                <a class="cyl-nav__link" href="#achievements" data-nav-link data-nav-target="achievements">Achievements</a>
+                <a class="cyl-nav__link" href="#publications" data-nav-link data-nav-target="publications">Publications</a>
             </div>
         </nav>
         <section class="layout hero" id="about" data-nav-section>
@@ -46,7 +48,6 @@
                         <p>VAPT &amp; DevOps enthusiast</p>
                     </div>
                     <div class="social">
-                    <!-- Replace href with your real links -->
                     <a href="https://www.linkedin.com/in/basil-khowaja-073b9825b/" aria-label="LinkedIn" class="social__link" title="LinkedIn" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.849-3.036-1.851 0-2.134 1.445-2.134 2.939v5.666H9.355V9h3.414v1.561h.049c.476-.9 1.637-1.849 3.369-1.849 3.602 0 4.268 2.371 4.268 5.455v6.285zM5.337 7.433a2.064 2.064 0 110-4.128 2.064 2.064 0 010 4.128zM7.114 20.452H3.555V9h3.559v11.452z" fill="currentColor"/>
@@ -132,7 +133,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="chapter" id="certifications" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Certifications</h2>
@@ -141,49 +141,50 @@
                     <div class="chapter-body">
                         <div class="section-body">
                             <div class="beat" data-beat>
-                                <ul class="cert-list" data-reveal-group>
-                                    <li>
-                                        <div class="cert-item reveal reveal-up">
-                                            <span class="cert-title">Cisco CyberOps From NetAcademy</span>
-                                            <a class="btn-verify" href="https://www.credly.com/badges/381e9ab3-b180-4498-86cb-478664052944/linked_in_profile" target="_blank" rel="noopener" aria-label="Verify Cisco CyberOps credential">Verify credential</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="cert-item reveal reveal-up">
-                                            <span class="cert-title">Cisco Endpoint Security From NetAcademy</span>
-                                            <a class="btn-verify" href="https://www.credly.com/badges/b361d58d-ea17-48e3-8c30-154808671bbf/public_url" target="_blank" rel="noopener" aria-label="Verify Cisco Endpoint Security credential">Verify credential</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="cert-item reveal reveal-up">
-                                            <span class="cert-title">Exploitation and Pentesting with Metasploit From IBM</span>
-                                            <a class="btn-verify" href="https://www.coursera.org/account/accomplishments/verify/2R2UZ185ZL5G" target="_blank" rel="noopener" aria-label="Verify Metasploit credential">Verify credential</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="cert-item reveal reveal-up">
-                                            <span class="cert-title">AWS Cloud Practitioner From Datacamp</span>
-                                            <a class="btn-verify" href="https://www.datacamp.com/completed/statement-of-accomplishment/track/29b5b3c64df6550d3c90c4bdd0ba86b4d15c584f" target="_blank" rel="noopener" aria-label="Verify AWS Cloud Practitioner credential">Verify credential</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="cert-item reveal reveal-up">
-                                            <span class="cert-title">Pre-Security Path From THM</span>
-                                            <a class="btn-verify" href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-GENPPPSY05.pdf" target="_blank" rel="noopener" aria-label="Verify Pre-Security Path credential">Verify credential</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="cert-item reveal reveal-up">
-                                            <span class="cert-title">Scan Systems with Nmap Path From Codecademy</span>
-                                            <a class="btn-verify" href="https://www.codecademy.com/profiles/basilkhowaja/certificates/8a755949f5374c06b088f439d70e9334" target="_blank" rel="noopener" aria-label="Verify Scan Systems with Nmap Path credential">Verify credential</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <div class="cert-slider reveal reveal-up" data-cert-slider>
+                                    <ul class="cert-list" data-reveal-group>
+                                        <li>
+                                            <div class="cert-item">
+                                                <span class="cert-title">Cisco CyberOps From NetAcademy</span>
+                                                <a class="btn-verify" href="https://www.credly.com/badges/381e9ab3-b180-4498-86cb-478664052944/linked_in_profile" target="_blank" rel="noopener" aria-label="Verify Cisco CyberOps credential">Verify credential</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cert-item">
+                                                <span class="cert-title">Cisco Endpoint Security From NetAcademy</span>
+                                                <a class="btn-verify" href="https://www.credly.com/badges/b361d58d-ea17-48e3-8c30-154808671bbf/public_url" target="_blank" rel="noopener" aria-label="Verify Cisco Endpoint Security credential">Verify credential</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cert-item">
+                                                <span class="cert-title">Exploitation and Pentesting with Metasploit From IBM</span>
+                                                <a class="btn-verify" href="https://www.coursera.org/account/accomplishments/verify/2R2UZ185ZL5G" target="_blank" rel="noopener" aria-label="Verify Metasploit credential">Verify credential</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cert-item">
+                                                <span class="cert-title">AWS Cloud Practitioner From Datacamp</span>
+                                                <a class="btn-verify" href="https://www.datacamp.com/completed/statement-of-accomplishment/track/29b5b3c64df6550d3c90c4bdd0ba86b4d15c584f" target="_blank" rel="noopener" aria-label="Verify AWS Cloud Practitioner credential">Verify credential</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cert-item">
+                                                <span class="cert-title">Pre-Security Path From THM</span>
+                                                <a class="btn-verify" href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-GENPPPSY05.pdf" target="_blank" rel="noopener" aria-label="Verify Pre-Security Path credential">Verify credential</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cert-item">
+                                                <span class="cert-title">Scan Systems with Nmap Path From Codecademy</span>
+                                                <a class="btn-verify" href="https://www.codecademy.com/profiles/basilkhowaja/certificates/8a755949f5374c06b088f439d70e9334" target="_blank" rel="noopener" aria-label="Verify Scan Systems with Nmap Path credential">Verify credential</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section class="chapter" id="experience" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Work Experience</h2>
@@ -196,7 +197,7 @@
                             </div>
                             <div class="beat" data-beat>
                                 <h3 class="subsection-title reveal reveal-up">Summer Tehqeeq and Research Program 2024</h3>
-                                <p class="project-desc reveal reveal-up">Selected by the Office of Research at Habib University for this paid project based on academic performance.<br> Research title: “Estimation of transmission line parameters using PMU measurements with bad‑data detection.”</p>
+                                <p class="project-desc reveal reveal-up">Selected by the Office of Research at Habib University for this paid project based on academic performance.<br> Research title: “Estimation of transmission line parameters using PMU measurements with bad-data detection.”</p>
                                 <div class="project-poster-row project-poster-row--image-centered project-poster-row--ascon" data-reveal-group>
                                     <figure class="project-poster reveal reveal-left">
                                         <img src="strp1_poster.jpeg" alt="Poster for 2024 Summer Tehqeeq project: Estimation of transmission line parameters using PMU measurements" />
@@ -211,7 +212,7 @@
                             </div>
                             <div class="beat" data-beat>
                                 <h3 class="subsection-title reveal reveal-up">Summer Tehqeeq and Research Program 2025</h3>
-                                <p class="project-desc reveal reveal-up">Recently I got selected for this project under the stream of Summer Tehqeeq and Research Program<br> based on my performance in earlier projects. <br><br> Title of project: “In‑house design and development of an IoT toolkit integrated with the cloud.”</p>
+                                <p class="project-desc reveal reveal-up">Recently I got selected for this project under the stream of Summer Tehqeeq and Research Program<br> based on my performance in earlier projects. <br><br> Title of project: “In-house design and development of an IoT toolkit integrated with the cloud.”</p>
                                 <div class="project-poster-row project-poster-row--image-centered" data-reveal-group>
                                     <figure class="project-poster project-poster--match2024 reveal reveal-left">
                                         <img src="strp1_2025.png" alt="Poster for 2025 Summer Tehqeeq project: In-house design and development of an IoT toolkit integrated with the cloud" />
@@ -234,7 +235,7 @@
                                         </figure>
                                     </div>
                                     <ul class="project-highlights reveal reveal-right">
-                                        <li>Selected as Intern Penetration Tester at Co‑Ventech (SaaS).</li>
+                                        <li>Selected as Intern Penetration Tester at Co-Ventech (SaaS).</li>
                                         <li>Selection process was rigorous, including a test and interviews.</li>
                                         <li>Performed pentesting using Metasploit and Burp Suite.</li>
                                         <li>Created PoCs and documented findings.</li>
@@ -259,7 +260,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="chapter" id="projects" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">Projects</h2>
@@ -310,7 +310,7 @@
                                 </div>
                                 <section class="network">
                                     <div class="network-text reveal reveal-up">
-                                        <p>Secure LWC VPN telemetry mesh for resource‑constrained IoT nodes.</p>
+                                        <p>Secure LWC VPN telemetry mesh for resource-constrained IoT nodes.</p>
                                     </div>
                                     <div class="network-viz reveal reveal-up" aria-hidden="true">
                                         <svg class="network-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -392,7 +392,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="chapter" id="achievements" data-chapter data-nav-section>
                     <div class="chapter-head">
                         <h2 class="section-title chapter-title">My Recent Achievements</h2>
@@ -442,40 +441,37 @@
                                     </ul>
                                 </div>
                             </div>
-
-	                        </div>
-	                    </div>
-	                </section>
-
-	                <section class="chapter" id="publications" data-chapter data-nav-section>
-	                    <div class="chapter-head">
-	                        <h2 class="section-title chapter-title">Publications</h2>
-	                        <div class="chapter-progress" aria-hidden="true"></div>
-	                    </div>
-	                    <div class="publication-logo-band reveal reveal-up">
-	                        <img src="icomet_logo.png" alt="ICOMET 2026 conference logo" />
-	                    </div>
-	                    <div class="chapter-body">
-	                        <div class="section-body">
-	                            <div class="beat" data-beat>
-	                                <div class="publication-content-card">
-	                                    <h3 class="subsection-title reveal reveal-up">Evaluation of IoT Protocol Performance in a Cloud-Enabled Home Safety System</h3>
-	                                    <p class="project-desc reveal reveal-up">Accepted at <strong>ICOMET 2026</strong>, this paper evaluates and compares MQTT, HTTP, and CoAP in a cloud-enabled home safety system where an ESP32 edge node transmits data to AWS and the cloud layer generates real-time safety alerts.</p>
-	                                    <ul class="project-highlights reveal reveal-up">
-	                                        <li>Accepted for presentation at <strong>The 5th International Conference on Computing, Mathematics and Engineering Technologies (ICOMET 2026)</strong>.</li>
-	                                        <li>Compares the performance of <strong>MQTT, HTTP, and CoAP</strong> for IoT communication in a practical home safety system architecture.</li>
-	                                        <li>Builds on an implementation where an <strong>ESP32</strong> sends sensor data to <strong>AWS</strong>, which then processes events and generates alerts.</li>
-	                                        <li>Highlights protocol-level tradeoffs relevant to cloud-connected safety systems, real-time monitoring, and dependable IoT design.</li>
-	                                    </ul>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </section>
-
-	            </div>
-	        </section>
-	    </main>
+                        </div>
+                    </div>
+                </section>
+                <section class="chapter" id="publications" data-chapter data-nav-section>
+                    <div class="chapter-head">
+                        <h2 class="section-title chapter-title">Publications</h2>
+                        <div class="chapter-progress" aria-hidden="true"></div>
+                    </div>
+                    <div class="publication-logo-band reveal reveal-up">
+                        <img src="icomet_logo.png" alt="ICOMET 2026 conference logo" />
+                    </div>
+                    <div class="chapter-body">
+                        <div class="section-body">
+                            <div class="beat" data-beat>
+                                <div class="publication-content-card">
+                                    <h3 class="subsection-title reveal reveal-up">Evaluation of IoT Protocol Performance in a Cloud-Enabled Home Safety System</h3>
+                                    <p class="project-desc reveal reveal-up">Accepted at <strong>ICOMET 2026</strong>, this paper evaluates and compares MQTT, HTTP, and CoAP in a cloud-enabled home safety system where an ESP32 edge node transmits data to AWS and the cloud layer generates real-time safety alerts.</p>
+                                    <ul class="project-highlights reveal reveal-up">
+                                        <li>Accepted for presentation at <strong>The 5th International Conference on Computing, Mathematics and Engineering Technologies (ICOMET 2026)</strong>.</li>
+                                        <li>Compares the performance of <strong>MQTT, HTTP, and CoAP</strong> for IoT communication in a practical home safety system architecture.</li>
+                                        <li>Builds on an implementation where an <strong>ESP32</strong> sends sensor data to <strong>AWS</strong>, which then processes events and generates alerts.</li>
+                                        <li>Highlights protocol-level tradeoffs relevant to cloud-connected safety systems, real-time monitoring, and dependable IoT design.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
     <script defer src="script.js"></script>
 </body>
 </html>

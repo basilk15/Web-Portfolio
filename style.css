@@ -160,13 +160,37 @@ h1, h2 {
   flex: 0 0 auto;
 }
 
-.cyl-nav__toggle {
+.cyl-nav__compound {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 2px;
+  padding-right: 6px;
+}
+
+.cyl-nav__menu-button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-left: -6px;
   border: 0;
+  border-radius: 999px;
   background: transparent;
+  color: rgba(15, 23, 42, 0.74);
   cursor: pointer;
+  transition: color 0.28s ease, background 0.28s ease, transform 0.28s ease;
+}
+
+.cyl-nav__menu-button:hover,
+.cyl-nav__menu-button:focus-visible,
+.cyl-nav__item.is-open .cyl-nav__menu-button {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.34);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 .cyl-nav__caret {
@@ -179,8 +203,8 @@ h1, h2 {
   transition: transform 0.22s ease, opacity 0.22s ease;
 }
 
-.cyl-nav__toggle:hover .cyl-nav__caret,
-.cyl-nav__toggle:focus-visible .cyl-nav__caret,
+.cyl-nav__menu-button:hover .cyl-nav__caret,
+.cyl-nav__menu-button:focus-visible .cyl-nav__caret,
 .cyl-nav__item.is-open .cyl-nav__caret {
   opacity: 1;
 }
@@ -285,7 +309,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .container h1 {
   margin-top: 30px;
   margin-bottom: 4px;      /* tighter gap above taglines */
-  font-size: clamp(28px, 6vw, 40px);
+  font-size: 40px;
   margin-left: 0;         /* align to name-block start */
   white-space: nowrap;
 }
@@ -301,7 +325,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .intro-side { min-width: 0; }
 .intro-side h1 {
   margin-top: 0;
-  font-size: clamp(32px, 8vw, 60px);           /* match your heading size */
+  font-size: 60px;           /* match your heading size */
   white-space: nowrap;
 }
 .hero-title-shimmer {
@@ -334,12 +358,11 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .intro-side h2 {
   margin-top: 12px;
-  font-size: clamp(18px, 2.1vw, 22px);
+  font-size: 22px;
   color: var(--muted);
   max-width: 680px;
 }
 .hero-beat { max-width: 680px; }
-
 @keyframes hero-title-shimmer {
   0% {
     background-position: 140% 0;
@@ -389,11 +412,14 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 
 /* Section headings after the intro paragraph */
-.content-sections { margin-top: 40px; }
+.content-sections {
+  width: 100%;
+  margin: 40px auto 0;
+}
 .chapters { width: 100%; }
 .sections .section-title {
   margin: 0;
-  font-size: clamp(30px, 4vw, 38px);
+  font-size: 38px;
   letter-spacing: -0.01em;
   position: relative;
   display: block;           /* ensure each heading is on its own line */
@@ -426,7 +452,7 @@ img, svg, video { max-width: 100%; height: auto; }
   background: linear-gradient(180deg, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.65) 70%, rgba(248, 250, 252, 0));
   backdrop-filter: blur(10px);
 }
-.chapter-title { font-size: clamp(30px, 4vw, 40px); }
+.sections .chapter-title { font-size: 40px; }
 .chapter-body { padding-top: 16px; }
 .chapter-progress {
   height: 2px;
@@ -441,7 +467,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .js-enabled .chapter-progress { transform: scaleX(var(--p, 0)); }
 .chapter-title.section-zoom {
   opacity: 0;
-  transform: scale(1.03) translateY(6px);
+  transform: translateY(6px);
   transform-origin: 50% 60%;
   transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 620ms ease;
   will-change: transform, opacity;
@@ -618,7 +644,7 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .publication-card__title {
   margin: 18px 0 8px;
-  font-size: clamp(30px, 4vw, 42px);
+  font-size: 42px;
   line-height: 1.05;
   color: var(--ink);
 }
@@ -952,7 +978,7 @@ img, svg, video { max-width: 100%; height: auto; }
 .side-project-title {
   margin: 0 0 12px;
   font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
-  font-size: clamp(34px, 4vw, 46px);
+  font-size: 46px;
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--ink);
@@ -1036,6 +1062,11 @@ img, svg, video { max-width: 100%; height: auto; }
   100% { transform: translateX(140%) rotate(12deg); opacity: 0; }
 }
 
+@keyframes cert-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - (var(--cert-gap) / 2))); }
+}
+
 /* -------------------------
    Page load animations
    ------------------------- */
@@ -1096,38 +1127,81 @@ body {
 }
 .sections .interests-list li { margin: 6px 0; }
 
-/* Certifications list styling (same feel as interests) */
+.cert-slider {
+  position: relative;
+  width: 100%;
+  margin: 8px 0 24px;
+  overflow: hidden;
+  padding: 14px 0 20px;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.cert-slider::before,
+.cert-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 92px;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cert-slider::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(239, 227, 218, 0.95), rgba(239, 227, 218, 0));
+}
+
+.cert-slider::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(239, 227, 218, 0.95), rgba(239, 227, 218, 0));
+}
+
+/* Certifications slider */
 .sections .cert-list {
-  margin: 8px 0 20px;
+  --cert-gap: 22px;
+  margin: 0;
   padding-left: 0;
   font-size: 20px;
   color: var(--ink);
-  max-width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px 28px;
+  display: flex;
+  width: max-content;
+  gap: var(--cert-gap);
   list-style: none;
+  animation: cert-marquee 34s linear infinite;
+  will-change: transform;
 }
-.sections .cert-list li { margin: 10px 0 18px; }
+.sections .cert-list li {
+  flex: 0 0 360px;
+  margin: 0;
+}
 
 /* Certification item layout */
 .sections .cert-item {
-  display: grid;             /* align button column consistently */
-  grid-template-columns: 1fr auto; /* title grows, button stays tight */
+  display: grid;
+  grid-template-rows: 1fr auto;
   align-items: center;
-  column-gap: 12px;
+  gap: 18px;
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  min-height: 172px;
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background:
+    radial-gradient(180px 120px at 12% 18%, rgba(15, 118, 110, 0.14), transparent 68%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.74));
+  box-shadow: 0 18px 34px -26px rgba(15, 23, 42, 0.44);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 .sections .cert-item:hover {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: var(--line);
+  border-color: rgba(15, 118, 110, 0.22);
   transform: translateY(-2px);
+  box-shadow: 0 24px 42px -28px rgba(15, 23, 42, 0.5);
 }
-.sections .cert-title { font-weight: 600; }
+.sections .cert-title {
+  font-weight: 700;
+  line-height: 1.35;
+}
 
 /* Verify credential button */
 .sections .btn-verify {
@@ -1200,9 +1274,6 @@ body {
 }
 
 @media (min-width: 900px) {
-  .sections .cert-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .sections .interests-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 24px;
@@ -1229,10 +1300,37 @@ body {
   .intro-side h1 { white-space: normal; }
   .chapter { margin: 48px 0; }
   .chapter-body { padding-top: 10px; }
-  .sections .section-title { font-size: clamp(24px, 7vw, 30px); }
+  .container h1 { font-size: 34px; }
+  .intro-side h1 { font-size: 36px; }
+  .intro-side h2 { font-size: 18px; }
+  .sections .section-title,
+  .sections .chapter-title { font-size: 30px; }
+  .publication-card__title,
+  .side-project-title { font-size: 34px; }
   .sections .project-poster-row { padding: 14px 14px; gap: 20px; }
   .sections .project-highlights { font-size: 18px; }
   .sections .section-body p { font-size: 18px; }
+  .cert-slider {
+    padding: 10px 0 16px;
+  }
+  .cert-slider::before,
+  .cert-slider::after {
+    width: 42px;
+  }
+  .sections .cert-list {
+    --cert-gap: 16px;
+    animation-duration: 28s;
+  }
+  .sections .cert-list li {
+    flex-basis: 285px;
+  }
+  .sections .cert-item {
+    min-height: 170px;
+    padding: 18px;
+  }
+  .sections .cert-title {
+    font-size: 18px;
+  }
   .network-viz { max-width: 100%; }
   .network-viz { aspect-ratio: 4 / 3; }
   .node { width: 68px; height: 68px; }
@@ -1298,6 +1396,7 @@ body {
   .node::before,
   .node::after,
   .lwc-tag,
+  .sections .cert-list,
   .side-project-card::before,
   .brand-beacon,
   .side-project-logo { animation: none !important; }
