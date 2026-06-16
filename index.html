@@ -12,7 +12,11 @@
 <body>
     <main class="page">
         <nav class="cyl-nav" aria-label="Portfolio sections" data-nav>
-            <div class="cyl-nav__shell" data-nav-shell>
+            <button class="cyl-nav__mobile-toggle" type="button" data-mobile-nav-toggle aria-expanded="false" aria-controls="portfolio-nav-menu">
+                <span>Menu</span>
+                <span class="cyl-nav__mobile-icon" aria-hidden="true"></span>
+            </button>
+            <div class="cyl-nav__shell" id="portfolio-nav-menu" data-nav-shell>
                 <a class="cyl-nav__link" href="#about" data-nav-link data-nav-target="about">About</a>
                 <a class="cyl-nav__link" href="#qualifications" data-nav-link data-nav-target="qualifications">Qualifications</a>
                 <a class="cyl-nav__link" href="#certifications" data-nav-link data-nav-target="certifications">Certifications</a>

@@ -12,6 +12,7 @@ document.documentElement.classList.add('js-enabled');
   const navLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
   const navSections = Array.from(document.querySelectorAll('[data-nav-section]'));
   const navItems = Array.from(document.querySelectorAll('[data-nav-item]'));
+  const mobileNavToggle = document.querySelector('[data-mobile-nav-toggle]');
   const navToggle = document.querySelector('[data-nav-toggle]');
   const navMenu = document.querySelector('[data-nav-menu]');
   const subnavLinks = Array.from(document.querySelectorAll('[data-subnav-link]'));
@@ -22,6 +23,7 @@ document.documentElement.classList.add('js-enabled');
   const navSectionIds = new Set(navSections.map((section) => section.id));
   let activeNavId = '';
   let activeSubnavId = '';
+  let hashNavigationUntil = 0;
 
   const getHashTarget = (value) => {
     if (!value) return '';
@@ -92,6 +94,7 @@ document.documentElement.classList.add('js-enabled');
   const syncHashTarget = () => {
     const hashTarget = window.location.hash.slice(1);
     if (!hashTarget) return;
+    hashNavigationUntil = Date.now() + 900;
 
     if (projectSections.some((section) => section.id === hashTarget)) {
       activateNavLink('projects');
@@ -128,6 +131,8 @@ document.documentElement.classList.add('js-enabled');
   };
 
   const syncActiveNavigation = () => {
+    if (Date.now() < hashNavigationUntil) return;
+
     const activeSection = getActiveSection(navSections);
     if (activeSection) {
       activateNavLink(activeSection.id);
@@ -157,6 +162,24 @@ document.documentElement.classList.add('js-enabled');
     }
   };
 
+  const setMobileNavOpen = (open) => {
+    if (!mobileNavToggle || !navShell) return;
+    navShell.classList.toggle('is-mobile-open', open);
+    mobileNavToggle.classList.toggle('is-open', open);
+    mobileNavToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (!open) {
+      closeMenus();
+    }
+  };
+
+  const closeMobileNav = () => setMobileNavOpen(false);
+
+  if (mobileNavToggle && navShell) {
+    mobileNavToggle.addEventListener('click', () => {
+      setMobileNavOpen(!navShell.classList.contains('is-mobile-open'));
+    });
+  }
+
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
       const item = navToggle.closest('[data-nav-item]');
@@ -179,6 +202,7 @@ document.documentElement.classList.add('js-enabled');
         activateNavLink('projects');
         activateSubnavLink(link.dataset.subnavTarget || getHashTarget(link.getAttribute('href')));
         closeMenus();
+        closeMobileNav();
       });
     });
 
@@ -186,11 +210,15 @@ document.documentElement.classList.add('js-enabled');
       if (!event.target.closest('[data-nav-item]')) {
         closeMenus();
       }
+      if (navShell && !event.target.closest('[data-nav]')) {
+        closeMobileNav();
+      }
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeMenus();
+        closeMobileNav();
       }
     });
   }
@@ -304,6 +332,7 @@ document.documentElement.classList.add('js-enabled');
       link.addEventListener('click', () => {
         const targetId = getPrimaryTarget(link);
         activateNavLink(targetId);
+        closeMobileNav();
         if (!link.hasAttribute('data-nav-toggle')) {
           closeMenus();
         }
@@ -338,7 +367,7 @@ document.documentElement.classList.add('js-enabled');
   window.addEventListener('resize', requestTick);
   window.addEventListener('hashchange', () => {
     syncHashTarget();
-    window.setTimeout(requestTick, 300);
+    window.setTimeout(requestTick, 1000);
   });
   if (desktopMedia.addEventListener) {
     desktopMedia.addEventListener('change', requestTick);
