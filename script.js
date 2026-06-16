@@ -362,7 +362,11 @@ document.documentElement.classList.add('js-enabled');
   };
 
   updateProgress();
-  syncActiveNavigation();
+  if (window.location.hash) {
+    syncHashTarget();
+  } else {
+    syncActiveNavigation();
+  }
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
   window.addEventListener('hashchange', () => {
