@@ -73,10 +73,11 @@ h1, h2 {
   --glow-x: 12%;
   position: relative;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  width: min(100%, 980px);
+  width: min(100%, 1080px);
   margin: 0 auto;
   padding: 10px;
   border-radius: 999px;
@@ -1312,7 +1313,7 @@ body {
   .intro-side h1 { margin-top: 24px; white-space: normal; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   :root {
     --nav-height: 70px;
     --nav-offset: 14px;
