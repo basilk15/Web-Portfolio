@@ -601,6 +601,58 @@ img, svg, video { max-width: 100%; height: auto; }
   .sections .project-poster-row { grid-template-columns: 1fr; }
   .sections .project-poster-row .project-poster { margin: 0 0 8px; }
 }
+
+.sections .achievement-award-row {
+  background:
+    radial-gradient(320px 220px at 16% 20%, rgba(15, 118, 110, 0.16), transparent 70%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(241, 245, 249, 0.78));
+}
+
+.achievement-award-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 0.42fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.achievement-award-photo {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  box-shadow: var(--shadow-md);
+}
+
+.achievement-award-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.achievement-award-photo--primary {
+  min-height: 360px;
+}
+
+.achievement-award-photo--certificate {
+  padding: 8px;
+}
+
+@media (max-width: 900px) {
+  .achievement-award-media {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-award-photo--primary {
+    min-height: 0;
+  }
+
+  .achievement-award-photo img {
+    height: auto;
+  }
+}
+
 /* Bullet highlights card */
 .sections .project-highlights {
   margin: 10px 0 20px;
