@@ -273,7 +273,9 @@ img, svg, video { max-width: 100%; height: auto; }
 .container .profile-photo {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 8%;
 }
 
 /* Modern photo card wrapper */
@@ -281,6 +283,7 @@ img, svg, video { max-width: 100%; height: auto; }
   margin-top: 24px;          /* space below logo */
   width: 100%;               /* match container width */
   max-width: 480px;          /* slightly smaller visual size on desktop */
+  aspect-ratio: 1 / 1.08;
   border-radius: 16px;
   overflow: hidden;          /* clip scaled image corners */
   box-shadow: var(--shadow-lg);
@@ -292,12 +295,12 @@ img, svg, video { max-width: 100%; height: auto; }
   transform: translateY(-3px);
 }
 .photo-card img {
-  transform: scale(1);
+  transform: scale(1.07);
   transition: transform 0.35s ease, filter 0.35s ease;
   will-change: transform;
 }
 .photo-card:hover img {
-  transform: scale(1.03);
+  transform: scale(1.1);
   filter: saturate(1.05) contrast(1.03);
 }
 
