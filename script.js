@@ -350,6 +350,51 @@ document.documentElement.classList.add('js-enabled');
     });
   }
 
+  if (!reduce) {
+    let pointerFrame = 0;
+
+    window.addEventListener('pointermove', (event) => {
+      if (pointerFrame) return;
+      pointerFrame = window.requestAnimationFrame(() => {
+        const x = (event.clientX / window.innerWidth) * 100;
+        const y = (event.clientY / window.innerHeight) * 100;
+        document.body.style.setProperty('--pointer-x', `${x.toFixed(2)}%`);
+        document.body.style.setProperty('--pointer-y', `${y.toFixed(2)}%`);
+        pointerFrame = 0;
+      });
+    }, { passive: true });
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.project-poster').forEach((poster) => {
+        poster.addEventListener('pointermove', (event) => {
+          const rect = poster.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          poster.style.setProperty('--tilt-x', `${(-y * 3).toFixed(2)}deg`);
+          poster.style.setProperty('--tilt-y', `${(x * 3).toFixed(2)}deg`);
+        });
+
+        poster.addEventListener('pointerleave', () => {
+          poster.style.setProperty('--tilt-x', '0deg');
+          poster.style.setProperty('--tilt-y', '0deg');
+        });
+      });
+    }
+
+    if (supportsObserver) {
+      const sceneObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-current', entry.isIntersecting);
+        });
+      }, {
+        rootMargin: '-20% 0px -30% 0px',
+        threshold: 0.05,
+      });
+
+      chapters.forEach((chapter) => sceneObserver.observe(chapter));
+    }
+  }
+
   const requestTick = () => {
     if (!ticking) {
       ticking = true;
