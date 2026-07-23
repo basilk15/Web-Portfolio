@@ -448,6 +448,16 @@ body::after {
   box-shadow: 0 0 24px rgba(200,255,82,.45);
   animation: signal-pulse 2.8s ease-in-out infinite;
 }
+.typing-caret {
+  display: inline-block;
+  width: .075em;
+  height: .7em;
+  margin-left: .09em;
+  vertical-align: .08em;
+  background: var(--signal);
+  box-shadow: 0 0 16px rgba(200,255,82,.65);
+  animation: type-caret-blink .85s steps(1, end) infinite;
+}
 .intro-side h2 { max-width: 800px; color: rgba(246,243,233,.76); }
 
 /* Every chapter is a full visual scene rather than an isolated card. */
@@ -702,8 +712,17 @@ body::after {
 .side-project-logo { animation: logo-hover 4s ease-in-out infinite; }
 
 /* Achievement evidence and publication now stay in their intended column. */
-.achievement-award-row { border: 0 !important; }
-.achievement-award-media { gap: 14px; }
+.achievement-award-row {
+  grid-template-columns: minmax(0, 1.38fr) minmax(340px, .72fr) !important;
+  gap: clamp(32px, 4vw, 62px) !important;
+  border: 0 !important;
+}
+.achievement-award-media {
+  grid-template-columns: minmax(0, 1.52fr) minmax(190px, .68fr);
+  gap: 18px;
+}
+.achievement-award-photo--primary { min-height: 390px; }
+.achievement-award-photo--certificate { min-height: 390px; }
 .achievement-award-photo { border-color: rgba(255,255,255,.14); border-radius: 18px 4px 18px 4px; box-shadow: 0 24px 70px rgba(0,0,0,.3); }
 .publication-logo-band { border-color: rgba(255,255,255,.15); }
 #publications .publication-logo-band {
@@ -829,6 +848,7 @@ body::after {
   from { opacity: .35; filter: blur(7px); transform: translateY(18px); }
   to { opacity: 1; filter: none; transform: none; }
 }
+@keyframes type-caret-blink { 50% { opacity: 0; } }
 
 @media (max-width: 1180px) {
   .chapter {
@@ -879,6 +899,9 @@ body::after {
   .project-section-title { font-size: clamp(2.8rem, 14vw, 4.5rem) !important; }
   .sections .project-poster-row { grid-template-columns: 1fr; }
   .achievement-award-media { grid-template-columns: 1fr; }
+  .achievement-award-row { grid-template-columns: 1fr !important; }
+  .achievement-award-photo--primary,
+  .achievement-award-photo--certificate { min-height: 0; }
   .publication-content-card { padding: 24px 0 24px 20px; }
   #publications .publication-logo-band { min-height: 0; padding: 38px 18px 20px; }
 }
@@ -887,6 +910,6 @@ body::after {
   body::after { display: none; }
   .layout.hero, .chapter::before, .intro-side h1::after, .sections .cert-item::after,
   #experience .section-body > .beat::before, .side-project-card__visual::before,
-  .side-project-logo { animation: none !important; }
+  .side-project-logo, .typing-caret { animation: none !important; }
   .sections .project-poster { transform: none !important; }
 }
