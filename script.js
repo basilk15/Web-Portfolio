@@ -17,6 +17,7 @@ document.documentElement.classList.add('js-enabled');
   const navMenu = document.querySelector('[data-nav-menu]');
   const subnavLinks = Array.from(document.querySelectorAll('[data-subnav-link]'));
   const certSliders = Array.from(document.querySelectorAll('[data-cert-slider]'));
+  const typewriterTitle = document.querySelector('[data-typewriter]');
   const projectSections = ['academic-projects', 'side-projects']
     .map((id) => document.getElementById(id))
     .filter(Boolean);
@@ -52,6 +53,40 @@ document.documentElement.classList.add('js-enabled');
   };
 
   setupCertificationSliders();
+
+  const setupTypewriter = () => {
+    if (!typewriterTitle) return;
+
+    const text = typewriterTitle.dataset.text || typewriterTitle.textContent.trim();
+    typewriterTitle.setAttribute('aria-label', text);
+
+    if (reduce) {
+      typewriterTitle.textContent = text;
+      return;
+    }
+
+    typewriterTitle.textContent = '';
+    const caret = document.createElement('span');
+    caret.className = 'typing-caret';
+    caret.setAttribute('aria-hidden', 'true');
+    typewriterTitle.appendChild(caret);
+
+    let index = 0;
+    const typeNextCharacter = () => {
+      if (index < text.length) {
+        caret.insertAdjacentText('beforebegin', text.charAt(index));
+        index += 1;
+        window.setTimeout(typeNextCharacter, index === 1 ? 170 : 78);
+        return;
+      }
+
+      window.setTimeout(() => caret.remove(), 1300);
+    };
+
+    window.setTimeout(typeNextCharacter, 420);
+  };
+
+  setupTypewriter();
 
   const setGlowFromLink = (link) => {
     if (!navShell || !link) return;
@@ -348,6 +383,51 @@ document.documentElement.classList.add('js-enabled');
       const activeLink = navLinks.find((link) => link.classList.contains('is-active')) || navLinks[0];
       setGlowFromLink(activeLink);
     });
+  }
+
+  if (!reduce) {
+    let pointerFrame = 0;
+
+    window.addEventListener('pointermove', (event) => {
+      if (pointerFrame) return;
+      pointerFrame = window.requestAnimationFrame(() => {
+        const x = (event.clientX / window.innerWidth) * 100;
+        const y = (event.clientY / window.innerHeight) * 100;
+        document.body.style.setProperty('--pointer-x', `${x.toFixed(2)}%`);
+        document.body.style.setProperty('--pointer-y', `${y.toFixed(2)}%`);
+        pointerFrame = 0;
+      });
+    }, { passive: true });
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.project-poster').forEach((poster) => {
+        poster.addEventListener('pointermove', (event) => {
+          const rect = poster.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          poster.style.setProperty('--tilt-x', `${(-y * 3).toFixed(2)}deg`);
+          poster.style.setProperty('--tilt-y', `${(x * 3).toFixed(2)}deg`);
+        });
+
+        poster.addEventListener('pointerleave', () => {
+          poster.style.setProperty('--tilt-x', '0deg');
+          poster.style.setProperty('--tilt-y', '0deg');
+        });
+      });
+    }
+
+    if (supportsObserver) {
+      const sceneObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-current', entry.isIntersecting);
+        });
+      }, {
+        rootMargin: '-20% 0px -30% 0px',
+        threshold: 0.05,
+      });
+
+      chapters.forEach((chapter) => sceneObserver.observe(chapter));
+    }
   }
 
   const requestTick = () => {
